@@ -1,22 +1,178 @@
+@import url("https://fonts.googleapis.com/css?family=Bitter|Mansalva|Nunito+Sans&display=swap");
+
 .App {
-  text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+* {
+	text-decoration: none;
+	color: rgb(70, 75, 39);
+	align-items: center;
+	font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+input {
+	font-size: 1.2rem;
+	height: 1.5em;
+	width: 30em;
 }
 
-.App-link {
-  color: #09d3ac;
+button {
+	margin: 0.5em;
+	font-size: 1.2rem;
+	height: 1.6em;
+	width: 10em;
+}
+
+h2,
+h3 {
+	font-family: "Bitter", Cambria, Cochin, Georgia, Times, "Times New Roman",
+		serif;
+}
+/*loader*/
+.loader {
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.loader img {
+	width: 100%;
+}
+/**/
+
+.navBar {
+	background-color: #f5d5be;
+	height: 4.5em;
+	display: flex;
+	justify-content: space-around;
+	justify-items: center;
+}
+
+.navBar a {
+	font-size: 2rem;
+	font-weight: bold;
+	font-family: "Mansalva", cursive;
+}
+
+.home h1 {
+	font-size: 4em;
+	margin: 5% 30% 2% 30%;
+	font-family: "Mansalva", cursive;
+	text-align: center;
+}
+
+.navBoxContainer {
+	margin: 5%;
+	display: flex;
+	justify-content: space-around;
+}
+
+.navBox {
+	font-size: 1.2rem;
+	text-transform: inherit;
+	text-align: center;
+	width: 14em;
+	height: 15em;
+	border: 5px solid#84A9AF;
+	border-radius: 20%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.navBox h2 {
+	text-transform: uppercase;
+	font-size: 2em;
+	font-family: "Mansalva", cursive;
+}
+
+/* search stuff */
+.recipeSearch {
+	display: flex;
+	flex-direction: column;
+	margin: 1em auto;
+}
+
+.searchForm {
+	display: flex;
+	flex-direction: column;
+	width: 50em;
+	margin: 1em auto;
+}
+
+.recipe {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.recipeShowcase {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.recipebox {
+	font-size: 1.2rem;
+	width: 20em;
+	height: 20em;
+	margin: 1em 1em;
+	border: solid#84A9AF 1px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.recipebox img {
+	width: 10em;
+	height: 10em;
+}
+
+.recipeURL {
+	color: salmon;
+	margin: 2em auto;
+	font-weight: bold;
+	text-align: end;
+}
+
+/* cookbook */
+.cookbook {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-items: center;
+	margin: 1em auto;
+}
+
+
+.userAddComponent {
+	display: flex;
+	flex-direction: column;
+}
+
+
+.showcaseBox {
+	display: flex;
+	flex-direction: column;
+}
+
+.recipePost {
+	font-size: 1rem;
+	border: 2px #84a9af solid;
+	border-radius: 1em;
+	width: 50em;
+	padding: 5em;
+	margin: 1em auto;
+}
+
+.catergory {
+	display: flex;
+}
+
+.catergory > p {
+	margin: 0 1em 0 0;
+	background-color: #f5d5be;
+	padding: 0.5em;
+	border-radius: 35%;
+	font-weight: bold;
 }
