@@ -1,9 +1,9 @@
 import React from "react";
-import RecipeSearch from "./components/recipesearch";
+import RecipeSearch from "./recipesearch";
 import { render, fireEvent, wait } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import appleRecipesData from "./testUtils/appleRecipesData";
-import mockFetch from "./testUtils/mock-fetch-util";
+import appleRecipesData from "../testUtils/appleRecipesData";
+import mockFetch from "../testUtils/mock-fetch-util";
 
 describe("recipe search component", () => {
 	beforeEach(() => {

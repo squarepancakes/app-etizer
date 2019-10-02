@@ -1,11 +1,12 @@
 import React from "react";
-import Cookbook from "./components/Cookbook";
+import Cookbook from "./Cookbook";
 import { render, fireEvent, wait, within } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
-import mockFetch from "./testUtils/mock-fetch-util";
-import halvaData from "./testUtils/halvaData";
+import mockFetch from "../testUtils/mock-fetch-util";
+import halvaData from "../testUtils/halvaData";
 
 describe("cookbook component", () => {
+
 	describe("add new recipe component", () => {
 		it("should have a subheading", () => {
 			const { getByText } = render(<Cookbook />);
@@ -42,8 +43,8 @@ describe("cookbook component", () => {
 			expect(getByText("Halva 5 Ways")).toBeInTheDocument();
 		});
 	});
-	describe("catergory filters", () => {
 
+	describe("catergory filters", () => {
 		it("should have a subheading", () => {
 			const { getByTestId } = render(<Cookbook />);
 			const catergoriesSection = within(getByTestId("showcaseBox"));
