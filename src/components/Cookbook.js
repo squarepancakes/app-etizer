@@ -112,6 +112,10 @@ class Cookbook extends React.Component {
 		});
 	};
 
+	addRecipe = () => {
+		this.componentDidMount();
+	};
+
 	getFilteredRecipes = () => {
 		const allRecipe = this.state.recipes;
 		if (this.state.selectedFilter.length === 0) {
@@ -139,7 +143,7 @@ class Cookbook extends React.Component {
 	render() {
 		return (
 			<div data-testid={"cookbookComponent"} className="cookbook">
-				<GetRecipe addUserAddedRecipe={this.addUserAddedRecipe} />
+				<GetRecipe addRecipe={this.addRecipe} />
 				<CategoryButton
 					categorySelector={this.categorySelector}
 					selectedFilter={this.state.selectedFilter}

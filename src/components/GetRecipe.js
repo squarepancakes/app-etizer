@@ -1,5 +1,6 @@
 import React from "react";
 import Loader from "./Loader";
+import axios from "axios";
 
 class GetRecipe extends React.Component {
 	constructor(props) {
@@ -35,8 +36,17 @@ class GetRecipe extends React.Component {
 				categories: ["Vegetarian", "Dessert"]
 			};
 
-			this.setState({ inputVal: "", isLoading: false });
-			this.props.addUserAddedRecipe(aNewRecipe);
+			console.log(aNewRecipe)
+
+			const url = "http://localhost:4000/recipes/new";
+			axios.post(url, aNewRecipe, { withCredentials: true }).then(() => 
+			{
+				this.setState({ inputVal: "", isLoading: false });
+				this.props.addRecipe(aNewRecipe);
+
+			}
+			);
+
 		}
 	};
 
