@@ -1,6 +1,8 @@
 import React from "react";
-import { recipeList, totalCatergories } from "../data/recipelist";
+// import Printing from "./PrintingData";
+import { totalCatergories } from "../data/recipelist";
 import GetRecipe from "./GetRecipe";
+import axios from "axios";
 
 const CategoryButton = ({ categorySelector, selectedFilter = [] }) => {
 	return (
@@ -11,10 +13,8 @@ const CategoryButton = ({ categorySelector, selectedFilter = [] }) => {
 					const isSelected = selectedFilter.some(
 						item => item.toLowerCase() === category.toLowerCase()
 					);
-					console.log(isSelected, category);
-					const buttonStyle = isSelected
-						? { backgroundColor: "#f5d5be" }
-						: {};
+					// console.log(isSelected, category);
+					const buttonStyle = isSelected ? { backgroundColor: "#f5d5be" } : {};
 					return (
 						<button
 							key={i}
@@ -45,9 +45,10 @@ const RecipePost = ({
 			<div className={"Categories"}>
 				<h3>{"Categories"}</h3>
 				<div className={"catergory"}>
-					{catergories.map((cat, i) => {
-						return <p key={cat}>{cat}</p>;
-					})}
+					{catergories &&
+						catergories.map((cat, i) => {
+							return <p key={cat}>{cat}</p>;
+						})}
 				</div>
 			</div>
 			<div className={"ingredients"}>
@@ -80,7 +81,7 @@ class Cookbook extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			recipes: recipeList,
+			recipes: [],
 			userAddedRecipes: [],
 			selectedFilter: []
 		};
@@ -120,11 +121,19 @@ class Cookbook extends React.Component {
 		}
 	};
 
-	addUserAddedRecipe = newRecipe => {
-		this.setState({
-			userAddedRecipes: [...this.state.userAddedRecipes, newRecipe]
+	componentDidMount = () => {
+		const url = "http://localhost:4000/recipes";
+		axios.get(url, { withCredentials: true }).then(res => {
+			console.log(res.data);
+			this.setState({ recipes: res.data });
 		});
 	};
+
+	// addUserAddedRecipe = newRecipe => {
+	// 	this.setState({
+	// 		userAddedRecipes: [...this.state.userAddedRecipes, newRecipe]
+	// 	});
+	// };
 
 	getFilteredRecipes = () => {
 		const allRecipe = [...this.state.recipes, ...this.state.userAddedRecipes];
@@ -153,6 +162,7 @@ class Cookbook extends React.Component {
 	render() {
 		return (
 			<div data-testid={"cookbookComponent"} className="cookbook">
+				{/* <Printing /> */}
 				<GetRecipe addUserAddedRecipe={this.addUserAddedRecipe} />
 				<CategoryButton
 					categorySelector={this.categorySelector}
@@ -167,7 +177,7 @@ class Cookbook extends React.Component {
 								catergories={recipe.categories}
 								ingredients={recipe.ingredients}
 								instructions={recipe.instructions}
-								time={recipe.time.total}
+								time={recipe.time}
 								servings={recipe.servings}
 							/>
 						);

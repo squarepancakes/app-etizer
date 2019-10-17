@@ -1,5 +1,5 @@
 import React from "react";
-import Loader from './Loader'
+import Loader from "./Loader";
 
 class GetRecipe extends React.Component {
 	constructor(props) {
@@ -24,15 +24,13 @@ class GetRecipe extends React.Component {
 		if (this.state.inputVal !== "") {
 			this.setState({ isLoading: true });
 			const newScraper = "https://recipe-server-js.herokuapp.com/recipe?url=";
-			let recipe = await fetch(
-				`${newScraper}${this.state.inputVal}`
-			);
+			let recipe = await fetch(`${newScraper}${this.state.inputVal}`);
 			const data = await recipe.json();
 			const aNewRecipe = {
 				name: data.name,
 				ingredients: data.ingredients,
 				instructions: data.instructions,
-				time: data.time ? data.time : data.time.total,
+				time: data.time.total ? data.time.total : data.time,
 				servings: data.servings,
 				categories: ["Vegetarian", "Dessert"]
 			};
@@ -47,21 +45,20 @@ class GetRecipe extends React.Component {
 			<div>
 				{this.state.isLoading ? (
 					<Loader />
-				): 
-			<div className="userAddComponent">
-				<h2>Add New Recipes</h2>
-				<input
-					placeholder={"URL of new Recipe!"}
-					aria-label={"inputNewRecipeURL"}
-					type={"text"}
-					value={this.state.inputVal}
-					onChange={this.handleChange}
-				/>
-				<button onClick={this.addRecipe}>Add Recipe</button>
-			</div>}
-
+				) : (
+					<div className="userAddComponent">
+						<h2>Add New Recipes</h2>
+						<input
+							placeholder={"URL of new Recipe!"}
+							aria-label={"inputNewRecipeURL"}
+							type={"text"}
+							value={this.state.inputVal}
+							onChange={this.handleChange}
+						/>
+						<button onClick={this.addRecipe}>Add Recipe</button>
+					</div>
+				)}
 			</div>
-			
 		);
 	}
 }

@@ -46,14 +46,7 @@ export const recipeList = [
 				"Candied hazelnuts keep in an airtight container 3 weeks.\n" +
 				"Pastry can be baked 2 days ahead and kept in an airtight container at room temperature."
 		],
-		time: {
-			prep: "",
-			cook: "",
-			active: "1 1/4 hr",
-			inactive: "",
-			ready: "",
-			total: "5 hr (includes chilling)"
-		},
+		time: "5 hr (includes chilling)",
 		servings: "8 servings"
 	},
 	{
@@ -72,14 +65,7 @@ export const recipeList = [
 			"Meanwhile, in a food processor, add the basil leaves and a large pinch of kosher salt.  Turn on the machine and slowly pour in the cream. Continue processing until the mixture starts to turn green and thicken. Being very careful not to over-blend or the cream will break.",
 			"Add the basil cream to the pasta and combine until nicely coated.  Season with salt and pepper to taste. Garnish with freshly grated Parmigiano-Reggiano and serve hot."
 		],
-		time: {
-			prep: "",
-			cook: "",
-			active: "10 MIN",
-			inactive: "",
-			ready: "",
-			total: "10 MIN"
-		},
+		time: "10 MIN",
 		servings: "4"
 	},
 	{
