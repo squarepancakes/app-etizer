@@ -1,19 +1,17 @@
 import React from "react";
-// import Printing from "./PrintingData";
-import { totalCatergories } from "../data/recipelist";
+import { totalCategories } from "../data/recipelist";
 import GetRecipe from "./GetRecipe";
 import axios from "axios";
 
 const CategoryButton = ({ categorySelector, selectedFilter = [] }) => {
 	return (
 		<div data-testid={"showcaseBox"} className="showcaseBox">
-			<h2>Catergories</h2>
-			<div className={"showcaseBoxCatergories"}>
-				{totalCatergories.map((category, i) => {
+			<h2>Categories</h2>
+			<div className={"showcaseBoxCategories"}>
+				{totalCategories.map((category, i) => {
 					const isSelected = selectedFilter.some(
 						item => item.toLowerCase() === category.toLowerCase()
 					);
-					// console.log(isSelected, category);
 					const buttonStyle = isSelected ? { backgroundColor: "#f5d5be" } : {};
 					return (
 						<button
@@ -33,7 +31,7 @@ const CategoryButton = ({ categorySelector, selectedFilter = [] }) => {
 
 const RecipePost = ({
 	name,
-	catergories,
+	categories,
 	ingredients,
 	instructions,
 	time,
@@ -44,9 +42,9 @@ const RecipePost = ({
 			<h2>{name}</h2>
 			<div className={"Categories"}>
 				<h3>{"Categories"}</h3>
-				<div className={"catergory"}>
-					{catergories &&
-						catergories.map((cat, i) => {
+				<div className={"category"}>
+					{categories &&
+						categories.map((cat, i) => {
 							return <p key={cat}>{cat}</p>;
 						})}
 				</div>
@@ -82,29 +80,14 @@ class Cookbook extends React.Component {
 		super();
 		this.state = {
 			recipes: [],
-			userAddedRecipes: [],
 			selectedFilter: []
 		};
 	}
 
-	// selectedFilter = event => {
-	// 	const onPressCategory = event.target.value;
-	// 	const selectedFilter = this.state.selectedFilter;
-	// 	selectedFilter.map(oneFilter => {
-	// 		if (onPressCategory === oneFilter) {
-	// 			console.log("remove");
-	// 			return "removeFilter";
-	// 		} else {
-	// 			console.log("add");
-	// 			return "addFilter";
-	// 		}
-	// 	});
-	// };
-
 	categorySelector = event => {
 		const onPressCategory = event.target.value;
 		const containsCategory = this.state.selectedFilter.some(
-			catergory => catergory === onPressCategory
+			category => category === onPressCategory
 		);
 		if (!containsCategory) {
 			this.setState({
@@ -129,14 +112,8 @@ class Cookbook extends React.Component {
 		});
 	};
 
-	// addUserAddedRecipe = newRecipe => {
-	// 	this.setState({
-	// 		userAddedRecipes: [...this.state.userAddedRecipes, newRecipe]
-	// 	});
-	// };
-
 	getFilteredRecipes = () => {
-		const allRecipe = [...this.state.recipes, ...this.state.userAddedRecipes];
+		const allRecipe = this.state.recipes;
 		if (this.state.selectedFilter.length === 0) {
 			return allRecipe;
 		}
@@ -162,7 +139,6 @@ class Cookbook extends React.Component {
 	render() {
 		return (
 			<div data-testid={"cookbookComponent"} className="cookbook">
-				{/* <Printing /> */}
 				<GetRecipe addUserAddedRecipe={this.addUserAddedRecipe} />
 				<CategoryButton
 					categorySelector={this.categorySelector}
@@ -174,7 +150,7 @@ class Cookbook extends React.Component {
 							<RecipePost
 								key={recipe.name}
 								name={recipe.name}
-								catergories={recipe.categories}
+								categories={recipe.categories}
 								ingredients={recipe.ingredients}
 								instructions={recipe.instructions}
 								time={recipe.time}

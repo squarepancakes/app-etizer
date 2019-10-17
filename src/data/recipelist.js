@@ -1,4 +1,4 @@
-export const totalCatergories = [
+export const totalCategories = [
 	"Dessert",
 	"Vegetarian",
 	"Dinner",
