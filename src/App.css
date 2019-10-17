@@ -144,12 +144,10 @@ h3 {
 	margin: 1em auto;
 }
 
-
 .userAddComponent {
 	display: flex;
 	flex-direction: column;
 }
-
 
 .showcaseBox {
 	display: flex;
@@ -165,11 +163,11 @@ h3 {
 	margin: 1em auto;
 }
 
-.catergory {
+.category {
 	display: flex;
 }
 
-.catergory > p {
+.category > p {
 	margin: 0 1em 0 0;
 	background-color: #f5d5be;
 	padding: 0.5em;
