@@ -7,6 +7,8 @@ export const Header = () => {
 			<Link to="/">Home</Link>
 			<Link to="/recipe search">Recipe Search</Link>
 			<Link to="/cookbook">Cookbook</Link>
+			<Link to="/login">Login</Link>
+			<Link to="/logout">Logout</Link>
 		</div>
 	);
 };
