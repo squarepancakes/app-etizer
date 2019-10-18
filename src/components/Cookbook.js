@@ -31,6 +31,8 @@ const CategoryButton = ({ categorySelector, selectedFilter = [] }) => {
 
 const RecipePost = ({
 	name,
+	recipeId,
+	deleteRecipe,
 	categories,
 	ingredients,
 	instructions,
@@ -39,6 +41,7 @@ const RecipePost = ({
 }) => {
 	return (
 		<div className={"recipePost"} data-testid={"recipePost"}>
+			<button onClick={() => deleteRecipe(recipeId)}>X</button>
 			<h2>{name}</h2>
 			<div className={"Categories"}>
 				<h3>{"Categories"}</h3>
@@ -105,16 +108,50 @@ class Cookbook extends React.Component {
 	};
 
 	componentDidMount = () => {
+		this.showRecipes();
+	};
+
+	showRecipes = async () => {
 		const url = "http://localhost:4000/recipes";
-		axios.get(url, { withCredentials: true }).then(res => {
-			console.log(res.data);
+		axios
+			.get(url, { withCredentials: true })
+			.then(res => {
+				this.setState({ recipes: res.data });
+			})
+			.catch(err => console.error(err));
+	};
+
+	deleteRecipe = id => {
+		const url = `http://localhost:4000/recipes/${id}`;
+		axios.delete(url, { withCredentials: true }).then(res => {
 			this.setState({ recipes: res.data });
 		});
 	};
 
-	addRecipe = () => {
-		this.componentDidMount();
-	};
+	// editButton = id => {
+	// 	return (
+	// 		<form
+	// 			aria-label={"searchForm"}
+	// 			className="searchForm"
+	// 			onSubmit={this.submitRequest}
+	// 		>
+	// 			<input name={"category"}></input>
+	// 			<button>Edit</button>
+	// 		</form>
+	// 	);
+	// };
+
+	// editCategories = (id, newCategories) => {
+	// 	let newCategories = event.target.elements.category.value;
+
+	// 	const url = `http://localhost:4000/recipes/${id}`;
+
+	// 	axios
+	// 		.patch(url, { categories: newCategories }, { withCredentials: true })
+	// 		.then(res => {
+	// 			this.setState({ recipes: res.data });
+	// 		});
+	// };
 
 	getFilteredRecipes = () => {
 		const allRecipe = this.state.recipes;
@@ -143,7 +180,7 @@ class Cookbook extends React.Component {
 	render() {
 		return (
 			<div data-testid={"cookbookComponent"} className="cookbook">
-				<GetRecipe addRecipe={this.addRecipe} />
+				<GetRecipe showRecipes={this.showRecipes} />
 				<CategoryButton
 					categorySelector={this.categorySelector}
 					selectedFilter={this.state.selectedFilter}
@@ -152,7 +189,9 @@ class Cookbook extends React.Component {
 					{this.getFilteredRecipes().map(recipe => {
 						return (
 							<RecipePost
+								deleteRecipe={this.deleteRecipe}
 								key={recipe.name}
+								recipeId={recipe._id}
 								name={recipe.name}
 								categories={recipe.categories}
 								ingredients={recipe.ingredients}

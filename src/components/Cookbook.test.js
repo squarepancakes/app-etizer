@@ -23,7 +23,7 @@ describe("cookbook component", () => {
 			expect(getByText("Add Recipe")).toBeInTheDocument();
 		});
 
-		it("should display text as typed into the input box", () => {
+		xit("should display text as typed into the input box", () => {
 			const { getByLabelText, getByDisplayValue } = render(<Cookbook />);
 			const inputBox = getByLabelText("inputNewRecipeURL");
 			const url = "https://www.epicurious.com/recipes/food/views/halva-5-ways";
@@ -31,7 +31,7 @@ describe("cookbook component", () => {
 			expect(getByDisplayValue(url)).toBeInTheDocument();
 		});
 
-		it("should add a recipe to the page", async () => {
+		xit("should add a recipe to the page", async () => {
 			mockFetch.mockOnce(halvaData);
 			const { getByLabelText, getByText } = render(<Cookbook />);
 			const inputBox = getByLabelText("inputNewRecipeURL");
