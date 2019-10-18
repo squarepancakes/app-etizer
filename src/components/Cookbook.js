@@ -1,5 +1,4 @@
 import React from "react";
-// import { totalCategories } from "../data/recipelist";
 import GetRecipe from "./GetRecipe";
 import axios from "axios";
 
@@ -41,7 +40,8 @@ const RecipePost = ({
 	ingredients,
 	instructions,
 	time,
-	servings
+	servings,
+	userId
 }) => {
 	return (
 		<div className={"recipePost"} data-testid={"recipePost"}>
@@ -117,19 +117,28 @@ class Cookbook extends React.Component {
 	};
 
 	showRecipes = async () => {
-		const url = "http://localhost:4000/recipes";
+		const baseUrl = "http://localhost:4000/users";
+		const meResponse = await axios.get(`${baseUrl}/me`, {
+			withCredentials: true
+		});
+		const username = meResponse.data.username;
+
 		axios
-			.get(url, { withCredentials: true })
+			.get(`${baseUrl}/${username}`, { withCredentials: true })
 			.then(res => {
-				let totalCategories =[];
-				res.data.forEach(recipe => {
+				let totalCategories = [];
+				res.data.recipes.forEach(recipe => {
 					recipe.categories.forEach(category => {
-					  if(!totalCategories.includes(category)) {
-					  totalCategories.push(category)
-					  }
-					})
-				  })
-				this.setState({ recipes: res.data, allCategories: totalCategories });
+						if (!totalCategories.includes(category)) {
+							totalCategories.push(category);
+						}
+					});
+				});
+				console.log(res.data.recipes);
+				this.setState({
+					recipes: res.data.recipes,
+					allCategories: totalCategories
+				});
 			})
 			.catch(err => console.error(err));
 	};
@@ -140,31 +149,6 @@ class Cookbook extends React.Component {
 			this.setState({ recipes: res.data });
 		});
 	};
-
-	// editButton = id => {
-	// 	return (
-	// 		<form
-	// 			aria-label={"searchForm"}
-	// 			className="searchForm"
-	// 			onSubmit={this.submitRequest}
-	// 		>
-	// 			<input name={"category"}></input>
-	// 			<button>Edit</button>
-	// 		</form>
-	// 	);
-	// };
-
-	// editCategories = (id, newCategories) => {
-	// 	let newCategories = event.target.elements.category.value;
-
-	// 	const url = `http://localhost:4000/recipes/${id}`;
-
-	// 	axios
-	// 		.patch(url, { categories: newCategories }, { withCredentials: true })
-	// 		.then(res => {
-	// 			this.setState({ recipes: res.data });
-	// 		});
-	// };
 
 	getFilteredRecipes = () => {
 		const allRecipe = this.state.recipes;
@@ -193,8 +177,7 @@ class Cookbook extends React.Component {
 	render() {
 		return (
 			<div data-testid={"cookbookComponent"} className="cookbook">
-				
-				<GetRecipe showRecipes={this.showRecipes} />
+				<GetRecipe showRecipes={this.showRecipes} userId={this.props.userId} />
 				<CategoryButton
 					allCategories={this.state.allCategories}
 					categorySelector={this.categorySelector}
@@ -213,6 +196,7 @@ class Cookbook extends React.Component {
 								instructions={recipe.instructions}
 								time={recipe.time}
 								servings={recipe.servings}
+								userId={this.props.userId}
 							/>
 						);
 					})}

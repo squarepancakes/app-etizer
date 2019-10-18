@@ -7,7 +7,14 @@ class GetRecipe extends React.Component {
 		super(props);
 		this.state = {
 			inputVal: "",
-			totalCategories: ["Dessert", "Vegetarian", "Quick meals", "Dinner", "Chicken", "Seafood"],
+			totalCategories: [
+				"Dessert",
+				"Vegetarian",
+				"Quick meals",
+				"Dinner",
+				"Chicken",
+				"Seafood"
+			],
 			selectedCategories: [],
 			isLoading: false
 		};
@@ -18,7 +25,13 @@ class GetRecipe extends React.Component {
 	};
 
 	addRecipe = async () => {
-		if (this.state.inputVal !== "" && this.state.selectedCategories.length > 0) {
+		if (
+			this.state.inputVal !== "" &&
+			this.state.selectedCategories.length > 0
+		) {
+			const user = this.props.userId;
+			console.log("userId", user);
+
 			this.setState({ isLoading: true });
 			const newScraper = "https://recipe-server-js.herokuapp.com/recipe?url=";
 			let recipe = await fetch(`${newScraper}${this.state.inputVal}`);
@@ -31,7 +44,7 @@ class GetRecipe extends React.Component {
 				time: data.time.total,
 				servings: data.servings,
 				categories: this.state.selectedCategories,
-				user: "5da95c0252b1f11ff5c1f89a"
+				user: this.props.userId
 			};
 
 			const url = "http://localhost:4000/recipes/new";
@@ -66,14 +79,14 @@ class GetRecipe extends React.Component {
 						<div className={"categoriesCheckboxes"}>
 							{this.state.totalCategories.map(category => {
 								return (
-									<div className={"individualCheckboxes"}>
+									<div key={category} className={"individualCheckboxes"}>
 										<input
 											onChange={this.handleCheckboxChanges}
 											type="checkbox"
 											name="categories"
 											value={category}
 										/>
-										<label for={"category"}>{category}</label>
+										<label>{category}</label>
 									</div>
 								);
 							})}
