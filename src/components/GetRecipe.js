@@ -31,7 +31,7 @@ class GetRecipe extends React.Component {
 				time: data.time.total,
 				servings: data.servings,
 				categories: this.state.selectedCategories,
-				user: "5da8468c8c9a2f3dbaf58e14"
+				user: "5da95c0252b1f11ff5c1f89a"
 			};
 
 			const url = "http://localhost:4000/recipes/new";

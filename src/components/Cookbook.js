@@ -1,14 +1,18 @@
 import React from "react";
-import { totalCategories } from "../data/recipelist";
+// import { totalCategories } from "../data/recipelist";
 import GetRecipe from "./GetRecipe";
 import axios from "axios";
 
-const CategoryButton = ({ categorySelector, selectedFilter = [] }) => {
+const CategoryButton = ({
+	categorySelector,
+	allCategories,
+	selectedFilter = []
+}) => {
 	return (
 		<div data-testid={"showcaseBox"} className="showcaseBox">
 			<h2>Categories</h2>
 			<div className={"showcaseBoxCategories"}>
-				{totalCategories.map((category, i) => {
+				{allCategories.map((category, i) => {
 					const isSelected = selectedFilter.some(
 						item => item.toLowerCase() === category.toLowerCase()
 					);
@@ -83,7 +87,8 @@ class Cookbook extends React.Component {
 		super();
 		this.state = {
 			recipes: [],
-			selectedFilter: []
+			selectedFilter: [],
+			allCategories: []
 		};
 	}
 
@@ -116,7 +121,15 @@ class Cookbook extends React.Component {
 		axios
 			.get(url, { withCredentials: true })
 			.then(res => {
-				this.setState({ recipes: res.data });
+				let totalCategories =[];
+				res.data.forEach(recipe => {
+					recipe.categories.forEach(category => {
+					  if(!totalCategories.includes(category)) {
+					  totalCategories.push(category)
+					  }
+					})
+				  })
+				this.setState({ recipes: res.data, allCategories: totalCategories });
 			})
 			.catch(err => console.error(err));
 	};
@@ -180,8 +193,10 @@ class Cookbook extends React.Component {
 	render() {
 		return (
 			<div data-testid={"cookbookComponent"} className="cookbook">
+				
 				<GetRecipe showRecipes={this.showRecipes} />
 				<CategoryButton
+					allCategories={this.state.allCategories}
 					categorySelector={this.categorySelector}
 					selectedFilter={this.state.selectedFilter}
 				/>

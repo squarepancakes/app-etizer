@@ -174,3 +174,7 @@ h3 {
 	border-radius: 35%;
 	font-weight: bold;
 }
+
+.individualCheckboxes > input {
+	display: wrap
+}
