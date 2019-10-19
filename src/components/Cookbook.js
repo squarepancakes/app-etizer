@@ -41,7 +41,7 @@ const RecipePost = ({
 	instructions,
 	time,
 	servings,
-	userId
+	// userId
 }) => {
 	return (
 		<div className={"recipePost"} data-testid={"recipePost"}>
@@ -196,7 +196,7 @@ class Cookbook extends React.Component {
 								instructions={recipe.instructions}
 								time={recipe.time}
 								servings={recipe.servings}
-								userId={this.props.userId}
+								// userId={this.props.userId}
 							/>
 						);
 					})}
