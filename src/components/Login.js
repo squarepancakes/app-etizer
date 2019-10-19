@@ -5,7 +5,7 @@ class Login extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isLoading: false,
+			isLoggedin: false,
 			username: "",
 			password: "",
 			id: ""
@@ -26,6 +26,7 @@ class Login extends React.Component {
 					id: res.data._id
 				});
 				this.props.setUserId(res.data._id);
+				
 			})
 			.catch(err => {
 				console.error(err);

@@ -29,6 +29,7 @@ class GetRecipe extends React.Component {
 			this.state.inputVal !== "" &&
 			this.state.selectedCategories.length > 0
 		) {
+		
 
 			this.setState({ isLoading: true });
 			const newScraper = "https://recipe-server-js.herokuapp.com/recipe?url=";

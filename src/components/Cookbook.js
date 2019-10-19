@@ -41,7 +41,7 @@ const RecipePost = ({
 	instructions,
 	time,
 	servings,
-	// userId
+	userId
 }) => {
 	return (
 		<div className={"recipePost"} data-testid={"recipePost"}>
@@ -88,7 +88,8 @@ class Cookbook extends React.Component {
 		this.state = {
 			recipes: [],
 			selectedFilter: [],
-			allCategories: []
+			allCategories: [],
+			userId: ""
 		};
 	}
 
@@ -134,11 +135,12 @@ class Cookbook extends React.Component {
 						}
 					});
 				});
-				console.log(res.data.recipes);
 				this.setState({
 					recipes: res.data.recipes,
-					allCategories: totalCategories
+					allCategories: totalCategories,
+					userId: this.props.userId
 				});
+			
 			})
 			.catch(err => console.error(err));
 	};
@@ -177,7 +179,7 @@ class Cookbook extends React.Component {
 	render() {
 		return (
 			<div data-testid={"cookbookComponent"} className="cookbook">
-				<GetRecipe showRecipes={this.showRecipes} userId={this.props.userId} />
+				<GetRecipe showRecipes={this.showRecipes} userId={this.state.userId} />
 				<CategoryButton
 					allCategories={this.state.allCategories}
 					categorySelector={this.categorySelector}
@@ -196,7 +198,7 @@ class Cookbook extends React.Component {
 								instructions={recipe.instructions}
 								time={recipe.time}
 								servings={recipe.servings}
-								// userId={this.props.userId}
+								userId={this.props.userId}
 							/>
 						);
 					})}
