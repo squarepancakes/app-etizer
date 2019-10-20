@@ -45,6 +45,11 @@ class RecipeSearch extends React.Component {
 		);
 		const data = await response.json();
 		const recipeList = data.hits;
+		if(recipeList.length === 0) {
+			return (
+				<h3>No relevant recipes, please try again.</h3>
+			)
+		}
 		this.setState({
 			recipeList: recipeList,
 			isLoading: false
