@@ -1,6 +1,8 @@
 import React from "react";
 import GetRecipe from "./GetRecipe";
 import axios from "axios";
+import TrashIcon from '../assets/icons8-trash-96.png'
+
 
 const CategoryButton = ({
 	categorySelector,
@@ -45,14 +47,15 @@ const RecipePost = ({
 }) => {
 	return (
 		<div className={"recipePost"} data-testid={"recipePost"}>
-			<button onClick={() => deleteRecipe(recipeId)}>X</button>
+			
 			<h2>{name}</h2>
 			<div className={"Categories"}>
 				<h3>{"Categories"}</h3>
 				<div className={"category"}>
 					{categories &&
 						categories.map((cat, i) => {
-							return <p key={cat}>{cat}</p>;
+
+							return <p key={cat+i}>{cat}</p>;
 						})}
 				</div>
 			</div>
@@ -74,10 +77,12 @@ const RecipePost = ({
 				<h3>{"Time Required"}</h3>
 				<h4>{time}</h4>
 			</div>
+			<img src={TrashIcon} alt={"delete icon"} onClick={() => deleteRecipe(recipeId)}></img>
 			<div className={"servings"}>
 				<h3>{"Servings"}</h3>
 				<h4>{servings}</h4>
 			</div>
+			
 		</div>
 	);
 };
@@ -180,7 +185,6 @@ class Cookbook extends React.Component {
 		return (
 			<div data-testid={"cookbookComponent"} className="cookbook">
 				<GetRecipe showRecipes={this.showRecipes} userId={this.state.userId} />
-				
 				<CategoryButton
 					allCategories={this.state.allCategories}
 					categorySelector={this.categorySelector}
