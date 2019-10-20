@@ -163,6 +163,12 @@ h3 {
 	margin: 1em auto;
 }
 
+.recipePost > img {
+	width: 3.5em;
+	float: right;
+	cursor: pointer;
+}
+
 .category {
 	display: flex;
 }
@@ -175,6 +181,53 @@ h3 {
 	font-weight: bold;
 }
 
+.categoriesCheckboxes > p {
+	text-align: center;
+	margin: 0.5rem, auto, 0, auto;
+}
+
+
+.individualCheckboxes {
+	padding: 0.8em;
+	display: inline-flex;
+	flex-direction: column;
+	align-content: center;
+}
+
 .individualCheckboxes > input {
-	display: wrap
+	width: auto;
+}
+
+/* login */
+.loginForm {
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	padding: 4em;
+}
+
+.userLink {
+	font-family: "Bitter", Cambria, Cochin, Georgia, Times, "Times New Roman";
+	font-weight: bolder;
+	color: #84a9af;
+}
+
+/* signup */
+.signupForm {
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	padding: 4em;
+}
+
+.userInput {
+	margin: 0.2em;
+}
+
+.logoutMessage {
+	font-size: 2rem;
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	padding: 3em;
 }

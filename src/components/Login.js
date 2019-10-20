@@ -45,32 +45,29 @@ class Login extends React.Component {
 
 	render() {
 		return (
-			<div className={"loginForm"}>
+			<div className={"loginPage"}>
 				{this.state.isLoggedIn ? (
 					<p>"Hello"</p>
 				) : (
-					<div>
-						<input
-							placeholder="Username"
-							name={"username"}
-							onChange={event =>
-								this.setState({ username: event.target.value })
-							}
-						></input>
-						<input
-							placeholder="Password"
-							type="password"
-							name={"password"}
-							onChange={event =>
-								this.setState({ password: event.target.value })
-							}
-						></input>
+					<div className={"loginForm"}>
+							<input className={"userInput"}
+								placeholder="Username"
+								name={"username"}
+								onChange={event =>
+									this.setState({ username: event.target.value })
+								}
+							></input>
+							<input className={"userInput"}
+								placeholder="Password"
+								type="password"
+								name={"password"}
+								onChange={event =>
+									this.setState({ password: event.target.value })
+								}
+							></input>
 						<button onClick={this.loginHandler}>Login</button>
 						<h3>
-							Don't have an account? Sign up{" "}
-							<a href="/signup" className={"signupLink"}>
-								here!
-							</a>
+							Don't have an account? Sign up <a href="/signup" className={"userLink"}>here!</a>
 						</h3>
 					</div>
 				)}

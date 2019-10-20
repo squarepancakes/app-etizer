@@ -14,7 +14,7 @@ const logout = () => {
 
 const Logout = () => {
 	logout();
-	return <div>See you tomorrow!</div>;
+	return <h3 className={"logoutMessage"}>See you tomorrow!</h3>;
 };
 
 export default Logout;

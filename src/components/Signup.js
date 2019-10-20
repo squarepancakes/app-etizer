@@ -19,8 +19,7 @@ class Signup extends React.Component {
 		if (password !== passwordCheck) {
 			throw new Error("Passwords need to be the same");
 		}
-        const payload = { username: username, password: password };
-        console.log(password)
+		const payload = { username: username, password: password };
 		const url = `http://localhost:4000/users/new`;
 		axios
 			.post(url, payload, { withCredentials: true })
@@ -47,30 +46,31 @@ class Signup extends React.Component {
 	render() {
 		return (
 			<div className={"signupForm"}>
-				<div>
-					<input
-						placeholder="Username"
-						name={"username"}
-						onChange={event => this.setState({ username: event.target.value })}
-					></input>
-					<input
-						placeholder="Password"
-						type="password"
-						name={"password"}
-						onChange={event =>
-							this.setState({ passwordField1: event.target.value })
-						}
-					></input>
-					<input
-						placeholder="Type password again"
-						type="password"
-						name={"password"}
-						onChange={event =>
-							this.setState({ passwordField2: event.target.value })
-						}
-					></input>
-					<button onClick={this.signupHandler}>Signup!</button>
-				</div>
+				<h3>
+					Already signed up? Login <a href="/login" className={"userLink"}>here!</a>
+				</h3>
+				<input className={"userInput"}
+					placeholder="Username"
+					name={"username"}
+					onChange={event => this.setState({ username: event.target.value })}
+				></input>
+				<input className={"userInput"}
+					placeholder="Password"
+					type="password"
+					name={"password"}
+					onChange={event =>
+						this.setState({ passwordField1: event.target.value })
+					}
+				></input>
+				<input className={"userInput"}
+					placeholder="Type password again"
+					type="password"
+					name={"password"}
+					onChange={event =>
+						this.setState({ passwordField2: event.target.value })
+					}
+				></input>
+				<button onClick={this.signupHandler}>Signup!</button>
 			</div>
 		);
 	}
