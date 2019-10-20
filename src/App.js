@@ -3,13 +3,14 @@ import "./App.css";
 import Cookbook from "./components/Cookbook";
 import { BrowserRouter, Route, Switch, Redirect, Link } from "react-router-dom";
 import { Header } from "./components/Header";
-import RecipeSearch from "./components/RecipeSearch";
+import FindNewRecipes from "./components/FindNewRecipes";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
+import Signup from "./components/Signup";
 
 const navigator = [
-	{ title: "Recipe Search", description: "Find your meal now!" },
-	{ title: "Cookbook", description: "Cook your favourite recipe!" }
+	{ title: "Find new recipes", description: "Find your meal now!", link: "findnewrecipes" },
+	{ title: "Cookbook", description: "Cook your favourite recipe!", link: "cookbook" }
 ];
 
 const Home = () => {
@@ -19,7 +20,7 @@ const Home = () => {
 			<div className={"navBoxContainer"}>
 				{navigator.map((page, i) => {
 					return (
-						<Link key={page.title} to={`/${page.title}`}>
+						<Link key={page.title} to={`/${page.link}`}>
 							<div className="navBox" key={i}>
 								<h2>{page.title}</h2>
 								<p>{page.description}</p>
@@ -48,8 +49,8 @@ export function App() {
 					/>
 					<Route
 						exact
-						path="/recipe search"
-						component={() => <RecipeSearch />}
+						path="/findnewrecipes"
+						component={() => <FindNewRecipes />}
 					/>
 					<Route
 						exact
@@ -57,6 +58,7 @@ export function App() {
 						component={() => <Login setUserId={setUserId} />}
 					/>
 					<Route exact path="/logout" component={Logout} />
+					<Route exact path="/signup" component={Signup} />
 					<Redirect to="/" />
 				</Switch>
 			</div>

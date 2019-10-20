@@ -140,7 +140,6 @@ class Cookbook extends React.Component {
 					allCategories: totalCategories,
 					userId: this.props.userId
 				});
-			
 			})
 			.catch(err => console.error(err));
 	};
@@ -175,11 +174,13 @@ class Cookbook extends React.Component {
 			);
 		});
 	};
+	
 
 	render() {
 		return (
 			<div data-testid={"cookbookComponent"} className="cookbook">
 				<GetRecipe showRecipes={this.showRecipes} userId={this.state.userId} />
+				
 				<CategoryButton
 					allCategories={this.state.allCategories}
 					categorySelector={this.categorySelector}
@@ -190,7 +191,7 @@ class Cookbook extends React.Component {
 						return (
 							<RecipePost
 								deleteRecipe={this.deleteRecipe}
-								key={recipe.name}
+								key={recipe._id}
 								recipeId={recipe._id}
 								name={recipe.name}
 								categories={recipe.categories}

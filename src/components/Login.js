@@ -5,14 +5,14 @@ class Login extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isLoggedin: false,
+			isLoggedIn: false,
 			username: "",
 			password: "",
 			id: ""
 		};
 	}
 
-	loginHandler = () => {
+	login = () => {
 		const username = this.state.username;
 		const password = this.state.password;
 		const payload = { username: username, password: password };
@@ -26,7 +26,6 @@ class Login extends React.Component {
 					id: res.data._id
 				});
 				this.props.setUserId(res.data._id);
-				
 			})
 			.catch(err => {
 				console.error(err);
@@ -34,6 +33,16 @@ class Login extends React.Component {
 			});
 		return "/cookbook";
 	};
+
+	loginHandler = () => {
+		this.login();
+		return (
+			<div>
+				<p>Start cooking!</p>
+			</div>
+		);
+	};
+
 	render() {
 		return (
 			<div className={"loginForm"}>
@@ -57,6 +66,12 @@ class Login extends React.Component {
 							}
 						></input>
 						<button onClick={this.loginHandler}>Login</button>
+						<h3>
+							Don't have an account? Sign up{" "}
+							<a href="/signup" className={"signupLink"}>
+								here!
+							</a>
+						</h3>
 					</div>
 				)}
 			</div>
