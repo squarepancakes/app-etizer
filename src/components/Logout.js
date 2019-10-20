@@ -14,7 +14,7 @@ const logout = () => {
 
 const Logout = () => {
 	logout();
-	return <div>page is Logout</div>;
+	return <div>See you tomorrow!</div>;
 };
 
 export default Logout;
