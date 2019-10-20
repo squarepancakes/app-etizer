@@ -9,7 +9,7 @@ import Logout from "./components/Logout";
 import Signup from "./components/Signup";
 
 const navigator = [
-	{ title: "Find new recipes", description: "Find your meal now!", link: "findnewrecipes" },
+	{ title: "Find new recipes", description: "Discover new recipes!", link: "findnewrecipes" },
 	{ title: "Cookbook", description: "Cook your favourite recipe!", link: "cookbook" }
 ];
 
@@ -39,7 +39,7 @@ export function App() {
 	return (
 		<div className="main">
 			<div>
-				<Header />
+				<Header/>
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route
