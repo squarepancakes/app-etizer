@@ -8,12 +8,13 @@ class GetRecipe extends React.Component {
 		this.state = {
 			inputVal: "",
 			totalCategories: [
-				"Dessert",
-				"Vegetarian",
 				"Quick meals",
-				"Dinner",
-				"Chicken",
-				"Seafood"
+				"Vegetarian",
+				"Meals",
+				"Dessert",
+				"Poultry",
+				"Seafood",
+				"Meat"
 			],
 			selectedCategories: [],
 			isLoading: false
@@ -76,6 +77,7 @@ class GetRecipe extends React.Component {
 							onChange={this.handleChange}
 						/>
 						<div className={"categoriesCheckboxes"}>
+						<p>Select categories for the recipe</p>
 							{this.state.totalCategories.map(category => {
 								return (
 									<div key={category} className={"individualCheckboxes"}>
