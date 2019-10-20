@@ -24,7 +24,7 @@ describe("recipe-app", () => {
 		it("recipe search link should bring you to recipe search page", () => {
 			const { getByTestId } = renderApp();
 			const navBar = getByTestId("navBar");
-			const recipeSearchBtn = within(navBar).getByText("Recipe Search");
+			const recipeSearchBtn = within(navBar).getByText("Find New Recipes");
 			fireEvent.click(recipeSearchBtn);
 			const recipeSearchPage = getByTestId("recipeSearchComponent");
 			expect(recipeSearchPage).toBeInTheDocument();
@@ -42,7 +42,7 @@ describe("recipe-app", () => {
 		it("should home link that brings you back to home ", () => {
 			const { getByTestId } = renderApp();
 			const navBar = within(getByTestId("navBar"));
-			const recipeSearchBtn = navBar.getByText("Recipe Search");
+			const recipeSearchBtn = navBar.getByText("Find New Recipes");
 			fireEvent.click(recipeSearchBtn);
 			const homeButton = navBar.getByText("Home");
 			fireEvent.click(homeButton);
@@ -57,16 +57,16 @@ describe("recipe-app", () => {
 			expect(getByText("What's cooking?")).toBeInTheDocument();
 		});
 
-		it("should have a recipe search navBox that brings you to recipe search page", () => {
+		it("should have a Find New Recipes navBox that brings you to Find New Recipes page", () => {
 			const { getByTestId } = renderApp();
 			const homePage = within(getByTestId("home"));
-			const recipeSearchLink = homePage.getByText("Recipe Search");
+			const recipeSearchLink = homePage.getByText("Find New Recipes");
 			fireEvent.click(recipeSearchLink);
 			const recipeSearchPage = getByTestId("recipeSearchComponent");
 			expect(recipeSearchPage).toBeInTheDocument();
 		});
 
-		it("should have a recipe search navBox with a description", () => {
+		it("should have a Find New Recipes navBox with a description", () => {
 			const { getByTestId } = renderApp();
 			const homePage = within(getByTestId("home"));
 			expect(homePage.getByText("Find your meal now!")).toBeInTheDocument();
