@@ -36,10 +36,11 @@ const Home = () => {
 export function App() {
 	const [userId, setUserId] = useState("");
 
+
 	return (
 		<div className="main">
 			<div>
-				<Header/>
+				<Header />
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route
