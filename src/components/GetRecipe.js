@@ -26,33 +26,35 @@ class GetRecipe extends React.Component {
 	};
 
 	addRecipe = async () => {
-		if (
-			this.state.inputVal !== "" &&
-			this.state.selectedCategories.length > 0
-		) {
-		
+		try {
+			if (
+				this.state.inputVal !== "" &&
+				this.state.selectedCategories.length > 0
+			) {
+				this.setState({ isLoading: true });
+				const newScraper = "https://recipe-server-js.herokuapp.com/recipe?url=";
+				let recipe = await fetch(`${newScraper}${this.state.inputVal}`);
+				const data = await recipe.json();
 
-			this.setState({ isLoading: true });
-			const newScraper = "https://recipe-server-js.herokuapp.com/recipe?url=";
-			let recipe = await fetch(`${newScraper}${this.state.inputVal}`);
-			const data = await recipe.json();
+				const aNewRecipe = {
+					name: data.name,
+					ingredients: data.ingredients,
+					instructions: data.instructions,
+					time: data.time.total,
+					servings: data.servings,
+					categories: this.state.selectedCategories,
+					user: this.props.userId
+				};
 
-			const aNewRecipe = {
-				name: data.name,
-				ingredients: data.ingredients,
-				instructions: data.instructions,
-				time: data.time.total,
-				servings: data.servings,
-				categories: this.state.selectedCategories,
-				user: this.props.userId
-			};
-
-			const url = "http://localhost:4000/recipes/new";
-			axios.post(url, aNewRecipe, { withCredentials: true }).then(() => {
-				this.setState({ inputVal: "", isLoading: false });
-				this.setState({ selectedCategories: [] });
-				this.props.showRecipes();
-			});
+				const url = "http://localhost:4000/recipes/new";
+				axios.post(url, aNewRecipe, { withCredentials: true }).then(() => {
+					this.setState({ inputVal: "", isLoading: false });
+					this.setState({ selectedCategories: [] });
+					this.props.showRecipes();
+				});
+			}
+		} catch (err) {
+			console.error(err);
 		}
 	};
 
@@ -77,7 +79,7 @@ class GetRecipe extends React.Component {
 							onChange={this.handleChange}
 						/>
 						<div className={"categoriesCheckboxes"}>
-						<p>Select categories for the recipe</p>
+							<p>Select categories for the recipe</p>
 							{this.state.totalCategories.map(category => {
 								return (
 									<div key={category} className={"individualCheckboxes"}>

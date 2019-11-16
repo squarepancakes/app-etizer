@@ -34,27 +34,36 @@ class Signup extends React.Component {
 	};
 
 	signupHandler = async () => {
-		this.signup();
-		return (
-			<div>
-				"Login to start cooking!"
-				<a href="/login">Login here!</a>
-			</div>
-		);
+		try {
+			this.signup();
+			return (
+				<div>
+					"Login to start cooking!"
+					<a href="/login">Login here!</a>
+				</div>
+			);
+		} catch (err) {
+			console.error(err);
+		}
 	};
 
 	render() {
 		return (
 			<div className={"signupForm"}>
 				<h3>
-					Already signed up? Login <a href="/login" className={"userLink"}>here!</a>
+					Already signed up? Login{" "}
+					<a href="/login" className={"userLink"}>
+						here!
+					</a>
 				</h3>
-				<input className={"userInput"}
+				<input
+					className={"userInput"}
 					placeholder="Username"
 					name={"username"}
 					onChange={event => this.setState({ username: event.target.value })}
 				></input>
-				<input className={"userInput"}
+				<input
+					className={"userInput"}
 					placeholder="Password"
 					type="password"
 					name={"password"}
@@ -62,7 +71,8 @@ class Signup extends React.Component {
 						this.setState({ passwordField1: event.target.value })
 					}
 				></input>
-				<input className={"userInput"}
+				<input
+					className={"userInput"}
 					placeholder="Type password again"
 					type="password"
 					name={"password"}

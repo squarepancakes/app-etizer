@@ -1,8 +1,7 @@
 import React from "react";
 import GetRecipe from "./GetRecipe";
 import axios from "axios";
-import TrashIcon from '../assets/icons8-trash-96.png'
-
+import TrashIcon from "../assets/icons8-trash-96.png";
 
 const CategoryButton = ({
 	categorySelector,
@@ -47,15 +46,13 @@ const RecipePost = ({
 }) => {
 	return (
 		<div className={"recipePost"} data-testid={"recipePost"}>
-			
 			<h2>{name}</h2>
 			<div className={"Categories"}>
 				<h3>{"Categories"}</h3>
 				<div className={"category"}>
 					{categories &&
 						categories.map((cat, i) => {
-
-							return <p key={cat+i}>{cat}</p>;
+							return <p key={cat + i}>{cat}</p>;
 						})}
 				</div>
 			</div>
@@ -77,12 +74,15 @@ const RecipePost = ({
 				<h3>{"Time Required"}</h3>
 				<h4>{time}</h4>
 			</div>
-			<img src={TrashIcon} alt={"delete icon"} onClick={() => deleteRecipe(recipeId)}></img>
+			<img
+				src={TrashIcon}
+				alt={"delete icon"}
+				onClick={() => deleteRecipe(recipeId)}
+			></img>
 			<div className={"servings"}>
 				<h3>{"Servings"}</h3>
 				<h4>{servings}</h4>
 			</div>
-			
 		</div>
 	);
 };
@@ -123,30 +123,34 @@ class Cookbook extends React.Component {
 	};
 
 	showRecipes = async () => {
-		const baseUrl = "http://localhost:4000/users";
-		const meResponse = await axios.get(`${baseUrl}/me`, {
-			withCredentials: true
-		});
-		const username = meResponse.data.username;
+		try {
+			const baseUrl = "http://localhost:4000/users";
+			const meResponse = await axios.get(`${baseUrl}/me`, {
+				withCredentials: true
+			});
+			const username = meResponse.data.username;
 
-		axios
-			.get(`${baseUrl}/${username}`, { withCredentials: true })
-			.then(res => {
-				let totalCategories = [];
-				res.data.recipes.forEach(recipe => {
-					recipe.categories.forEach(category => {
-						if (!totalCategories.includes(category)) {
-							totalCategories.push(category);
-						}
+			axios
+				.get(`${baseUrl}/${username}`, { withCredentials: true })
+				.then(res => {
+					let totalCategories = [];
+					res.data.recipes.forEach(recipe => {
+						recipe.categories.forEach(category => {
+							if (!totalCategories.includes(category)) {
+								totalCategories.push(category);
+							}
+						});
 					});
-				});
-				this.setState({
-					recipes: res.data.recipes,
-					allCategories: totalCategories,
-					userId: this.props.userId
-				});
-			})
-			.catch(err => console.error(err));
+					this.setState({
+						recipes: res.data.recipes,
+						allCategories: totalCategories,
+						userId: this.props.userId
+					});
+				})
+				.catch(err => console.error(err));
+		} catch (err) {
+			console.error(err);
+		}
 	};
 
 	deleteRecipe = id => {
@@ -179,7 +183,6 @@ class Cookbook extends React.Component {
 			);
 		});
 	};
-	
 
 	render() {
 		return (

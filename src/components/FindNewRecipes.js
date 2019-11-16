@@ -36,24 +36,26 @@ class RecipeSearch extends React.Component {
 	}
 
 	submitRequest = async event => {
-		event.preventDefault();
-		this.setState({ isLoading: true });
-		let query = event.target.elements.query.value;
-		const proxy = "https://cors-anywhere.herokuapp.com/";
-		const response = await fetch(
-			`${proxy}https://api.edamam.com/search?q=${query}&app_id=${process.env.REACT_APP_ID}}&app_key=${process.env.REACT_APP_KEY}`
-		);
-		const data = await response.json();
-		const recipeList = data.hits;
-		if(recipeList.length === 0) {
-			return (
-				<h3>No relevant recipes, please try again.</h3>
-			)
+		try {
+			event.preventDefault();
+			this.setState({ isLoading: true });
+			let query = event.target.elements.query.value;
+			const proxy = "https://cors-anywhere.herokuapp.com/";
+			const response = await fetch(
+				`${proxy}https://api.edamam.com/search?q=${query}&app_id=${process.env.REACT_APP_ID}}&app_key=${process.env.REACT_APP_KEY}`
+			);
+			const data = await response.json();
+			const recipeList = data.hits;
+			if (recipeList.length === 0) {
+				return <h3>No relevant recipes, please try again.</h3>;
+			}
+			this.setState({
+				recipeList: recipeList,
+				isLoading: false
+			});
+		} catch (err) {
+			console.error(err);
 		}
-		this.setState({
-			recipeList: recipeList,
-			isLoading: false
-		});
 	};
 
 	render() {
