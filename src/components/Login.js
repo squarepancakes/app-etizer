@@ -26,51 +26,43 @@ class Login extends React.Component {
 					id: res.data._id
 				});
 				this.props.setUserId(res.data._id);
+				this.props.setLoginStatus(this.state.isLoggedIn);
 			})
 			.catch(err => {
 				console.error(err);
 				this.setState({ isLoggedIn: false });
 			});
-		return "/cookbook";
-	};
-
-	loginHandler = () => {
-		this.login();
-		return (
-			<div>
-				<p>Start cooking!</p>
-			</div>
-		);
 	};
 
 	render() {
 		return (
 			<div className={"loginPage"}>
-				{this.state.isLoggedIn ? (
-					<p>"Hello"</p>
-				) : (
-					<div className={"loginForm"}>
-							<input className={"userInput"}
-								placeholder="Username"
-								name={"username"}
-								onChange={event =>
-									this.setState({ username: event.target.value })
-								}
-							></input>
-							<input className={"userInput"}
-								placeholder="Password"
-								type="password"
-								name={"password"}
-								onChange={event =>
-									this.setState({ password: event.target.value })
-								}
-							></input>
-						<button onClick={this.loginHandler}>Login</button>
+				<div className={"loginForm"}>
+					<input
+						className={"userInput"}
+						placeholder="Username"
+						name={"username"}
+						onChange={event => this.setState({ username: event.target.value })}
+					></input>
+					<input
+						className={"userInput"}
+						placeholder="Password"
+						type="password"
+						name={"password"}
+						onChange={event => this.setState({ password: event.target.value })}
+					></input>
+					<button onClick={this.login}>Login</button>
+					{this.state.isLoggedIn ? (
+						<h3>Start cooking!</h3>
+					) : (
 						<h3>
-							Don't have an account? Sign up <a href="/signup" className={"userLink"}>here!</a>
+							Don't have an account? Sign up{" "}
+							<a href="/signup" className={"userLink"}>
+								here!
+							</a>
 						</h3>
-					</div>
-				)}
+					)}
+				</div>
 			</div>
 		);
 	}

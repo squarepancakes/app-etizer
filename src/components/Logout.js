@@ -12,8 +12,9 @@ const logout = () => {
 	return "/login";
 };
 
-const Logout = () => {
+const Logout = props => {
 	logout();
+	props.setLoginStatus(false);
 	return <h3 className={"logoutMessage"}>See you tomorrow!</h3>;
 };
 

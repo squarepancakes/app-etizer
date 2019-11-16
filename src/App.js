@@ -9,8 +9,16 @@ import Logout from "./components/Logout";
 import Signup from "./components/Signup";
 
 const navigator = [
-	{ title: "Find new recipes", description: "Discover new recipes!", link: "findnewrecipes" },
-	{ title: "Cookbook", description: "Cook your favourite recipe!", link: "cookbook" }
+	{
+		title: "Find New Recipes",
+		description: "Discover new recipes!",
+		link: "findnewrecipes"
+	},
+	{
+		title: "Cookbook",
+		description: "Cook your favourite recipe!",
+		link: "cookbook"
+	}
 ];
 
 const Home = () => {
@@ -35,12 +43,12 @@ const Home = () => {
 
 export function App() {
 	const [userId, setUserId] = useState("");
-
-
+	const [loginStatus, setLoginStatus] = useState(false);
+	console.log(loginStatus)
 	return (
 		<div className="main">
 			<div>
-				<Header />
+				<Header loginStatus={loginStatus} />
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route
@@ -56,9 +64,15 @@ export function App() {
 					<Route
 						exact
 						path="/login"
-						component={() => <Login setUserId={setUserId} />}
+						component={() => (
+							<Login setUserId={setUserId} setLoginStatus={setLoginStatus} />
+						)}
 					/>
-					<Route exact path="/logout" component={Logout} />
+					<Route
+						exact
+						path="/logout"
+						component={() => <Logout setLoginStatus={setLoginStatus} />}
+					/>
 					<Route exact path="/signup" component={Signup} />
 					<Redirect to="/" />
 				</Switch>
