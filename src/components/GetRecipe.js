@@ -46,7 +46,7 @@ class GetRecipe extends React.Component {
 					user: this.props.userId
 				};
 
-				const url = "http://localhost:4000/recipes/new";
+				const url = `${process.env.REACT_APP_URL}recipes/new`;
 				axios.post(url, aNewRecipe, { withCredentials: true }).then(() => {
 					this.setState({ inputVal: "", isLoading: false });
 					this.setState({ selectedCategories: [] });

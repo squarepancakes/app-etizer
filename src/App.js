@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Cookbook from "./components/Cookbook";
-import { BrowserRouter, Route, Switch, Redirect, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Header } from "./components/Header";
 import FindNewRecipes from "./components/FindNewRecipes";
 import Login from "./components/Login";

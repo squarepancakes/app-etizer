@@ -20,7 +20,7 @@ class Signup extends React.Component {
 			throw new Error("Passwords are not identical! Please retype!");
 		}
 		const payload = { username: username, password: password };
-		const url = `http://localhost:4000/users/new`;
+		const url = `${process.env.REACT_APP_URL}users/new`;
 		axios
 			.post(url, payload, { withCredentials: true })
 			.then(res => {
@@ -51,8 +51,7 @@ class Signup extends React.Component {
 		return (
 			<div className={"signupForm"}>
 				<h3>
-					Create your own personal cookbook so that you'll never lose a recipe
-					again!
+					Create your own personal cookbook today and never lose a recipe again!
 				</h3>
 				<input
 					className={"userInput"}

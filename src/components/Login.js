@@ -16,7 +16,7 @@ class Login extends React.Component {
 		const username = this.state.username;
 		const password = this.state.password;
 		const payload = { username: username, password: password };
-		const url = `http://localhost:4000/users/login`;
+		const url = `${process.env.REACT_APP_URL}users/login`;
 		axios
 			.post(url, payload, { withCredentials: true })
 			.then(res => {

@@ -40,14 +40,13 @@ class Cookbook extends React.Component {
 
 	showRecipes = async () => {
 		try {
-			const baseUrl = "http://localhost:4000/users";
-			const meResponse = await axios.get(`${baseUrl}/me`, {
+			const meResponse = await axios.get(`${process.env.REACT_APP_URL}users/me`, {
 				withCredentials: true
 			});
 			const username = meResponse.data.username;
 
 			axios
-				.get(`${baseUrl}/${username}`, { withCredentials: true })
+				.get(`${process.env.REACT_APP_URL}users/${username}`, { withCredentials: true })
 				.then(res => {
 					let totalCategories = [];
 					res.data.recipes.forEach(recipe => {
@@ -70,7 +69,7 @@ class Cookbook extends React.Component {
 	};
 
 	deleteRecipe = id => {
-		const url = `http://localhost:4000/recipes/${id}`;
+		const url = `${process.env.REACT_APP_URL}recipes/${id}`;
 		axios.delete(url, { withCredentials: true }).then(res => {
 			this.setState({ recipes: res.data });
 		});
