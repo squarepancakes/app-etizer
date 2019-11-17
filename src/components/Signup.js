@@ -17,7 +17,7 @@ class Signup extends React.Component {
 		const password = this.state.passwordField1;
 		const passwordCheck = this.state.passwordField2;
 		if (password !== passwordCheck) {
-			throw new Error("Passwords need to be the same");
+			throw new Error("Passwords are not identical! Please retype!");
 		}
 		const payload = { username: username, password: password };
 		const url = `http://localhost:4000/users/new`;
@@ -51,10 +51,8 @@ class Signup extends React.Component {
 		return (
 			<div className={"signupForm"}>
 				<h3>
-					Already signed up? Login{" "}
-					<a href="/login" className={"userLink"}>
-						here!
-					</a>
+					Create your own personal cookbook so that you'll never lose a recipe
+					again!
 				</h3>
 				<input
 					className={"userInput"}
@@ -81,6 +79,12 @@ class Signup extends React.Component {
 					}
 				></input>
 				<button onClick={this.signupHandler}>Signup!</button>
+				<h3>
+					Have an account? Login{" "}
+					<a href="/login" className={"userLink"}>
+						here!
+					</a>
+				</h3>
 			</div>
 		);
 	}
