@@ -6,7 +6,7 @@ import { Header } from "./components/Header";
 import FindNewRecipes from "./components/FindNewRecipes";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
-import Signup from "./components/Signup";
+import Signup from "./components/Signup"
 
 const navigator = [
 	{
@@ -21,46 +21,45 @@ const navigator = [
 	}
 ];
 
-const Home = () => {
-	return (
-		<div data-testid={"home"} className={"home"}>
-			<h1>What's cooking?</h1>
-			<div className={"navBoxContainer"}>
-				{navigator.map((page, i) => {
-					return (
-						<Link key={page.title} to={`/${page.link}`}>
-							<div className="navBox" key={i}>
-								<h2>{page.title}</h2>
-								<p>{page.description}</p>
-							</div>
-						</Link>
-					);
-				})}
-			</div>
-		</div>
-	);
-};
+// const Home = () => {
+// 	return (
+// 		<div data-testid={"home"} className={"home"}>
+// 			<h1>What's cooking?</h1>
+// 			<div className={"navBoxContainer"}>
+// 				{navigator.map((page, i) => {
+// 					return (
+// 						<Link key={page.title} to={`/${page.link}`}>
+// 							<div className="navBox" key={i}>
+// 								<h2>{page.title}</h2>
+// 								<p>{page.description}</p>
+// 							</div>
+// 						</Link>
+// 					);
+// 				})}
+// 			</div>
+// 		</div>
+// 	);
+// };
 
 export function App() {
 	const [userId, setUserId] = useState("");
 	const [loginStatus, setLoginStatus] = useState(false);
-	console.log(loginStatus)
 	return (
 		<div className="main">
 			<div>
 				<Header loginStatus={loginStatus} />
 				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route
-						exact
-						path="/cookbook"
-						component={() => <Cookbook userId={userId} />}
-					/>
-					<Route
-						exact
-						path="/findnewrecipes"
-						component={() => <FindNewRecipes />}
-					/>
+					{/* <Route exact path="/" component={Home} /> */}
+					{loginStatus ? (
+						<Route
+							exact
+							path="/cookbook"
+							component={() => <Cookbook userId={userId} />}
+						/>
+					) : (
+						""
+					)}
+					<Route exact path="/" component={() => <FindNewRecipes />} />
 					<Route
 						exact
 						path="/login"
