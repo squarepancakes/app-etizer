@@ -1,11 +1,11 @@
-import React from 'react';
-import LoaderImage from '../assets/Loader.gif'
+import React from "react";
+import LoaderImage from "../assets/foodLoader.gif";
 
 const Loader = () => {
 	return (
-    <div className="loader">
-      <img  src={LoaderImage} alt="Page is loading"/>
-    </div>
+		<div className="loader">
+			<img src={LoaderImage} alt="Page is loading" />
+		</div>
 	);
 };
 
