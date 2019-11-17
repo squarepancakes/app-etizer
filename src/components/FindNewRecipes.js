@@ -1,6 +1,7 @@
 import React from "react";
 import Loader from "./Loader";
 import RecipeBox from "./RecipeBox";
+// import Logo from "../assets/Logo.png";
 class RecipeSearch extends React.Component {
 	constructor(props) {
 		super(props);
@@ -17,8 +18,9 @@ class RecipeSearch extends React.Component {
 			let query = event.target.elements.query.value;
 			const proxy = "https://cors-anywhere.herokuapp.com/";
 			const response = await fetch(
-				`${proxy}https://api.edamam.com/search?q=${query}&app_id=${process.env.REACT_APP_ID}}&app_key=${process.env.REACT_APP_KEY}`
+				`${proxy}https://api.edamam.com/search?q=${query}&app_id=${process.env.REACT_APP_ID}&app_key=${process.env.REACT_APP_KEY}`
 			);
+
 			const data = await response.json();
 			const recipeList = data.hits;
 			if (recipeList.length === 0) {
@@ -35,24 +37,27 @@ class RecipeSearch extends React.Component {
 
 	render() {
 		return (
-			<div className={"recipeSearch"} data-testid={"recipeSearchComponent"}>
-				<h2>Cook Something!</h2>
-				<form
-					aria-label={"searchForm"}
-					className="searchForm"
-					onSubmit={this.submitRequest}
-				>
-					<input
-						placeholder="Eg: Carrots, duck, vegetarian"
-						name={"query"}
-					></input>
-					<button>Search for Recipes</button>
-				</form>
-				{this.state.isLoading ? (
-					<Loader />
-				) : (
-					<RecipeBox list={this.state.recipeList} />
-				)}
+			<div className="background">
+				<div className={"recipeSearch"} data-testid={"recipeSearchComponent"}>
+					{/* <img src={Logo} alt="app-etizer" /> */}
+					<h2>Discover new recipes!</h2>
+					<form
+						aria-label={"searchForm"}
+						className="searchForm"
+						onSubmit={this.submitRequest}
+					>
+						<input
+							placeholder="Eg: Carrots, duck, vegetarian"
+							name={"query"}
+						></input>
+						<button>Search for Recipes</button>
+					</form>
+					{this.state.isLoading ? (
+						<Loader />
+					) : (
+						<RecipeBox list={this.state.recipeList} />
+					)}
+				</div>
 			</div>
 		);
 	}
