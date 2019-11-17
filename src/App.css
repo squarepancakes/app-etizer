@@ -3,9 +3,15 @@
 .App {
 }
 
+:root {
+	--beige: #f5d5bee7;
+	--moss-green: rgb(70, 75, 39);
+	--grey: rgba(117, 112, 116);
+}
+
 * {
 	text-decoration: none;
-	color: rgb(70, 75, 39);
+	color: var(--moss-green);
 	align-items: center;
 	font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
 }
@@ -40,16 +46,18 @@ h3 {
 /**/
 
 .navBar {
-	background-color: #f5d5be;
+	background-color: var(--beige);
 	height: 4.5em;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	justify-items: center;
 }
 
 .navBar a {
 	font-size: 2rem;
 	font-weight: bold;
+	margin: 2rem;
+	/* font-family: "Nunito Sans", Arial, Helvetica, sans-serif; */
 	font-family: "Mansalva", cursive;
 }
 
@@ -86,17 +94,35 @@ h3 {
 }
 
 /* search stuff */
+.background {
+	background-image: linear-gradient(
+			to bottom,
+			rgba(251, 251, 251, 0.03),
+			rgba(117, 112, 116, 0.73)
+		),
+		url(./assets/pancakes-bg3.jpg);
+	width: 100%;
+	height: 50rem;
+}
+
 .recipeSearch {
+	padding: 10em;
+	height: 20em;
 	display: flex;
 	flex-direction: column;
-	margin: 1em auto;
+}
+
+.recipeSearch > h2 {
+	font-style: normal;
+	font-size: 3rem;
+	color: var(--beige);
+	font-family: "Mansalva", cursive;
 }
 
 .searchForm {
 	display: flex;
 	flex-direction: column;
 	width: 50em;
-	margin: 1em auto;
 }
 
 .recipe {
@@ -175,7 +201,7 @@ h3 {
 
 .category > p {
 	margin: 0 1em 0 0;
-	background-color: #f5d5be;
+	background-color: var(--beige);
 	padding: 0.5em;
 	border-radius: 35%;
 	font-weight: bold;
@@ -185,7 +211,6 @@ h3 {
 	text-align: center;
 	margin: 0.5rem, auto, 0, auto;
 }
-
 
 .individualCheckboxes {
 	padding: 0.8em;
