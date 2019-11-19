@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 const logout = () => {
-	const url = `${process.env.REACT_APP_URL}users/logout`;
+	const url = `${process.env.REACT_APP_URL}/users/logout`;
 	axios
 		.post(url, {}, { withCredentials: true })
 		.then(() => {})

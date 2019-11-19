@@ -20,7 +20,8 @@ class Signup extends React.Component {
 			throw new Error("Passwords are not identical! Please retype!");
 		}
 		const payload = { username: username, password: password };
-		const url = `${process.env.REACT_APP_URL}users/new`;
+		const url = `${process.env.REACT_APP_URL}/users/new`;
+		console.log(url)
 		axios
 			.post(url, payload, { withCredentials: true })
 			.then(res => {

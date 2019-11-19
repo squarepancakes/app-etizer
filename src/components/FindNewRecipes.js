@@ -1,7 +1,6 @@
 import React from "react";
 import Loader from "./Loader";
 import RecipeBox from "./RecipeBox";
-// import Logo from "../assets/Logo.png";
 class RecipeSearch extends React.Component {
 	constructor(props) {
 		super(props);
@@ -37,9 +36,7 @@ class RecipeSearch extends React.Component {
 
 	render() {
 		return (
-			<div className="background">
 				<div className={"recipeSearch"} data-testid={"recipeSearchComponent"}>
-					{/* <img src={Logo} alt="app-etizer" /> */}
 					<h2>Discover new recipes!</h2>
 					<form
 						aria-label={"searchForm"}
@@ -58,7 +55,6 @@ class RecipeSearch extends React.Component {
 						<RecipeBox list={this.state.recipeList} />
 					)}
 				</div>
-			</div>
 		);
 	}
 }

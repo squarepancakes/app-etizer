@@ -40,13 +40,13 @@ class Cookbook extends React.Component {
 
 	showRecipes = async () => {
 		try {
-			const meResponse = await axios.get(`${process.env.REACT_APP_URL}users/me`, {
+			const meResponse = await axios.get(`${process.env.REACT_APP_URL}/users/me`, {
 				withCredentials: true
 			});
 			const username = meResponse.data.username;
 
 			axios
-				.get(`${process.env.REACT_APP_URL}users/${username}`, { withCredentials: true })
+				.get(`${process.env.REACT_APP_URL}/users/${username}`, { withCredentials: true })
 				.then(res => {
 					let totalCategories = [];
 					res.data.recipes.forEach(recipe => {
