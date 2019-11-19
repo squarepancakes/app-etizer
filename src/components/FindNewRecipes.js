@@ -18,7 +18,7 @@ class RecipeSearch extends React.Component {
 			let query = event.target.elements.query.value;
 			const proxy = "https://cors-anywhere.herokuapp.com/";
 			const response = await fetch(
-				`${proxy}https://api.edamam.com/search?q=${query}&app_id=${process.env.RECIPE_APP_ID}&app_key=${process.env.RECIPE_APP_KEY}`
+				`${proxy}https://api.edamam.com/search?q=${query}&app_id=${process.env.REACT_APP_RECIPE_APP_ID}&app_key=${process.env.REACT_APP_RECIPE_APP_KEY}`
 			);
 
 			const data = await response.json();
