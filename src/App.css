@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Bitter|Mansalva|Nunito+Sans&display=swap");
-
-.App {
-}
+/* @import url('https://fonts.googleapis.com/css?family=Alata|Calistoga&display=swap'); */
 
 :root {
 	--beige: #f5d5bee7;
@@ -57,13 +55,33 @@ h3 {
 	font-size: 2rem;
 	font-weight: bold;
 	margin: 2rem;
-	/* font-family: "Nunito Sans", Arial, Helvetica, sans-serif; */
 	font-family: "Mansalva", cursive;
 }
 
-.home h1 {
-	font-size: 4em;
-	margin: 5% 30% 2% 30%;
+.background {
+	position: absolute;
+	background-image: linear-gradient(
+			to bottom,
+			rgba(251, 251, 251, 0.03),
+			rgba(117, 112, 116, 0.73)
+		),
+		url(./assets/pancakes-bg3.jpg);
+	width: 100%;
+	height: 50rem;
+	display: flex;
+}
+
+.home {
+	width: 70%;
+	margin: 0 auto;
+	background-color: rgba(248, 248, 248, 0.4);
+}
+
+.home > h3 {
+	color: var(--moss-green);
+	font-size: 3em;
+	margin: 0;
+	padding: 2em 2.5em;
 	font-family: "Mansalva", cursive;
 	text-align: center;
 }
@@ -94,7 +112,7 @@ h3 {
 }
 
 /* search stuff */
-.background {
+/* .background {
 	background-image: linear-gradient(
 			to bottom,
 			rgba(251, 251, 251, 0.03),
@@ -103,10 +121,9 @@ h3 {
 		url(./assets/pancakes-bg3.jpg);
 	width: 100%;
 	height: 50rem;
-}
+} */
 
 .recipeSearch {
-	padding: 10em;
 	height: 20em;
 	display: flex;
 	flex-direction: column;
@@ -115,8 +132,9 @@ h3 {
 .recipeSearch > h2 {
 	font-style: normal;
 	font-size: 3rem;
-	color: var(--beige);
+	color: var(--moss-green);
 	font-family: "Mansalva", cursive;
+	padding: 1em;
 }
 
 .searchForm {

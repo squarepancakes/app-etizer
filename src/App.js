@@ -7,39 +7,7 @@ import FindNewRecipes from "./components/FindNewRecipes";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Signup from "./components/Signup"
-
-const navigator = [
-	{
-		title: "Find New Recipes",
-		description: "Discover new recipes!",
-		link: "findnewrecipes"
-	},
-	{
-		title: "Cookbook",
-		description: "Cook your favourite recipe!",
-		link: "cookbook"
-	}
-];
-
-// const Home = () => {
-// 	return (
-// 		<div data-testid={"home"} className={"home"}>
-// 			<h1>What's cooking?</h1>
-// 			<div className={"navBoxContainer"}>
-// 				{navigator.map((page, i) => {
-// 					return (
-// 						<Link key={page.title} to={`/${page.link}`}>
-// 							<div className="navBox" key={i}>
-// 								<h2>{page.title}</h2>
-// 								<p>{page.description}</p>
-// 							</div>
-// 						</Link>
-// 					);
-// 				})}
-// 			</div>
-// 		</div>
-// 	);
-// };
+import Home from "./components/Home"
 
 export function App() {
 	const [userId, setUserId] = useState("");
@@ -49,7 +17,7 @@ export function App() {
 			<div>
 				<Header loginStatus={loginStatus} />
 				<Switch>
-					{/* <Route exact path="/" component={Home} /> */}
+					<Route exact path="/" component={Home} />
 					{loginStatus ? (
 						<Route
 							exact
@@ -59,7 +27,7 @@ export function App() {
 					) : (
 						""
 					)}
-					<Route exact path="/" component={() => <FindNewRecipes />} />
+					<Route exact path="/findnewrecipes" component={() => <FindNewRecipes />} />
 					<Route
 						exact
 						path="/login"
