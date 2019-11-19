@@ -27,6 +27,7 @@ class Login extends React.Component {
 				});
 				this.props.setUserId(res.data._id);
 				this.props.setLoginStatus(this.state.isLoggedIn);
+				this.props.history.push("/cookbook");
 			})
 			.catch(err => {
 				console.error(err);

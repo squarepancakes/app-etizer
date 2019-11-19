@@ -6,8 +6,8 @@ import { Header } from "./components/Header";
 import FindNewRecipes from "./components/FindNewRecipes";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
-import Signup from "./components/Signup"
-import Home from "./components/Home"
+import Signup from "./components/Signup";
+import Home from "./components/Home";
 
 export function App() {
 	const [userId, setUserId] = useState("");
@@ -27,12 +27,20 @@ export function App() {
 					) : (
 						""
 					)}
-					<Route exact path="/findnewrecipes" component={() => <FindNewRecipes />} />
+					<Route
+						exact
+						path="/findnewrecipes"
+						component={() => <FindNewRecipes />}
+					/>
 					<Route
 						exact
 						path="/login"
-						component={() => (
-							<Login setUserId={setUserId} setLoginStatus={setLoginStatus} />
+						component={props => (
+							<Login
+								{...props}
+								setUserId={setUserId}
+								setLoginStatus={setLoginStatus}
+							/>
 						)}
 					/>
 					<Route
@@ -40,7 +48,11 @@ export function App() {
 						path="/logout"
 						component={() => <Logout setLoginStatus={setLoginStatus} />}
 					/>
-					<Route exact path="/signup" component={Signup} />
+					<Route
+						exact
+						path="/signup"
+						component={props => <Signup {...props} />}
+					/>
 					<Redirect to="/" />
 				</Switch>
 			</div>

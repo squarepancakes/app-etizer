@@ -37,13 +37,9 @@ class Signup extends React.Component {
 	signupHandler = async () => {
 		try {
 			this.signup();
-			return (
-				<div>
-					"Login to start cooking!"
-					<a href="/login">Login here!</a>
-				</div>
-			);
+			this.props.history.push("/login");
 		} catch (err) {
+			this.props.history.push("/home");
 			console.error(err);
 		}
 	};
